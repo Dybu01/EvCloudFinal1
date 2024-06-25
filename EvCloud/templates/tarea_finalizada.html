@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tareas Finalizadas</title>
+  </head>
+  <body>
+    <h2>Tareas Finalizadas</h2>
+    {% if tareas_finalizadas %}
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Fecha Inicio</th>
+            <th scope="col">Fecha Termino</th>
+            <th scope="col">Prioridad</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tarea in tareas_finalizadas %}
+          <tr>
+            <td>{{ tarea.titulo }}</td>
+            <td>{{ tarea.descripcion }}</td>
+            <td>{{ tarea.fecha_inicio }}</td>
+            <td>{{ tarea.fecha_termino }}</td>
+            <td>{{ tarea.prioridad }}</td>
+            <td>
+              <a
+                href="{% url 'edit_tarea_form' tarea.id %}"
+                class="btn btn-secondary"
+                >Modificar</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info" role="alert">No hay tareas finalizadas.</div>
+    {% endif %}
+  </body>
+</html>
